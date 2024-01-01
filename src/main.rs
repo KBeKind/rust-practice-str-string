@@ -1,3 +1,5 @@
+use core::num;
+
 
 
 
@@ -16,6 +18,34 @@ fn print_str(a_str: &str) {
 
 fn print_string(a_string: String) {
     println!("{}", a_string);
+}
+
+
+
+// USE SLICES WHEN:
+// YOU WANT TO BORROW A PORTION OF A COLLECTION RATHER THAN THE WHOLE COLLECTION
+// YOU WANT OT PASS AROUND A REFERENCE TO A SEQUENCE OF ITEMS WITHOUT COPYING THEM
+// YOU WANT TO ACCESS A SUBSET OF A COLLECTION WITHOUT COPYING 
+// YOU NEED TO DYNAMICALLY GROW OR SHRINK A COLLECTION
+
+// VECTOR STUFF
+
+fn ownership() {
+    let numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+    // CREATES A SLICE OF ALL ELEMENTS IN NUMBERS
+    let slice: &[i32] = &numbers[..];
+    println!("{:?}", slice);
+}
+
+fn modifiable() {
+    let mut numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+    // CREATES A SLICE OF ALL ELEMENTS IN NUMBERS
+    let slice: &mut [i32] = &mut numbers[..];
+    slice[0] = 10;
+    // BELOW WOULD FAIL BECAUSE YOU CANT BORROW AS IMMUTABLE IF IT IS ALREADY BORROWED AS MUTABLE
+    // CAN ONLY BORROW ONCE
+    // let other_slice = &numbers[..];
+    println!("slice: {:?}", slice);
 }
 
 
@@ -57,5 +87,11 @@ fn main() {
 
     let reversed: String = sentence.chars().rev().collect::<String>();
     println!("{}", reversed);
+
+
+    ownership();
+    modifiable();
+
+
 
 }
