@@ -131,4 +131,27 @@ fn main() {
 
     get_item(3);
 
+    // MODIFYING VECTORS
+
+    let mut v: Vec<i32> = vec![1, 2, 3, 4, 5];
+    
+    // PUSH A VALUE TO THE END OF A VECTOR
+    v.push(6);
+    println!("{:?}", v);
+
+    // EXTEND ADDS EACH ELEMENT OF THE GIVEN SLICE TO THE VECTOR
+    let more_numbers: Vec<i32> = vec![7, 8, 9];
+    v.extend(more_numbers);
+    println!("{:?}", v);
+
+    // APPEND ADDS THE GIVEN VECTOR TO THE END OF THE VECTOR, REQUIRES ADDED VECTOR TO BE MUTABLE
+    let mut other_numbers: Vec<i32> = vec![10, 11, 12];
+    v.append(&mut other_numbers);
+    println!("{:?}", v);
+
+    
+    // INSERT ITEMS AT A GIVEN INDEX MOVING OTHER ITEMS UP/BACK TO A HIGHER INDEX
+    v.insert(0, 0);
+    println!("{:?}", v);
+
 }
